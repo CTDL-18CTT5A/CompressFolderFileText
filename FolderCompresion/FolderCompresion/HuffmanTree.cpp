@@ -141,7 +141,11 @@ bool HuffmanTree::encodeFile(string originalFilename, string outputFilename)
 	string allText = "";
 
 	int k = originalFilename.find_last_of(".");
-	string subName = originalFilename.substr(0, k);
+	string subName1 = originalFilename.substr(0, k);
+
+	k = originalFilename.find_last_of("/");
+	int z = originalFilename.find_last_of(".");
+	string subName2 = originalFilename.substr(k + 1, z - k - 1);
 
 	ifstream infile;
 	infile.open(originalFilename.c_str());
@@ -165,10 +169,10 @@ bool HuffmanTree::encodeFile(string originalFilename, string outputFilename)
 	ofstream outStream;
 
 	if (outputFilename == "") {
-		outStream.open((subName + ".bin").c_str(), ios::binary);
+		outStream.open((subName1 + ".bin").c_str(), ios::binary);
 	}
 	else {
-		outStream.open((outputFilename + "/" + subName + ".bin").c_str(), ios::binary);
+		outStream.open((outputFilename + subName2 + ".bin").c_str(), ios::binary);
 	}
 	
 	
@@ -185,12 +189,17 @@ bool HuffmanTree::encodeFile(string originalFilename, string outputFilename)
 	// Kích thước mỗi lần ghi file xuống là 8 bit
 	const int WRITE_SIZE = 8;
 
+
 	// Duyệt từng kí tự của file đầu vào (trong chuổi string allText)
 	for (int i = 0; i < (int)allText.length(); i++) {
 	  // Nếu nó là một kí tự ASC thuần [0-255] thì ta sẻ thêm đoạn code mã hóa của kí tự đó vào chuổi currentStream
 	  if((int)allText[i] >= 0 && (int)allText[i] <= 255)
 		currentStream += freqArr[(int)allText[i]]->data.encoding;
-	  
+
+	  if (i == 0) {
+		  cout << "SIZE = " << allText.size() << endl;
+	  }
+
 	  // Kiểm tra xem sau khi thêm mã Code của kí tự vừa mã hóa thì chuổi currentStream có dài hơn 8 kí tự chưa
 	  // Nếu chưua thì tiếp tục.
 	  // Nếu rồi thì ta sẽ ngắt mỗi 8 kí tự của chuổi và ghi xuống file output
@@ -275,7 +284,7 @@ int HuffmanTree::traverseAndPrint(ofstream& decodedfile, string &bits, int i, BS
 
   if(cur->left == nullptr){
 	  decodedfile << cur->data.letter;
-	  //cout<< cur->data.letter;
+	  cout<< cur->data.letter;
 	return i;
   }else{
 	if(bits[i] == '0')
@@ -286,10 +295,7 @@ int HuffmanTree::traverseAndPrint(ofstream& decodedfile, string &bits, int i, BS
 }
 
 void HuffmanTree::displayCode(ostream &out)  
-{
-  // **************************************************************
-  //TODO: print out each letter and its code,
-  //   you might want to check for special cases (space, newline, etc.)		  
+{		  
   BST<CharFreq>::BSTNode* ptr;
   queue<BST<CharFreq>::BSTNode*> printQ;
   printQ.push(root);

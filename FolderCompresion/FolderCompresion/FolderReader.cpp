@@ -26,17 +26,9 @@ vector<string> FolderReader::get_all_files_names_within_folder(string folder)
 
 void FolderReader::create_folder(string folderName)
 {
-	int check;
 	char* dirname = new char(folderName.length()+1);
 
 	strcpy(dirname, folderName.c_str());
 
-	check = _mkdir(dirname);
-
-	if (!check)
-		printf("Directory created\n");
-	else {
-		printf("Unable to create directory\n");
-		exit(EXIT_FAILURE);
-	}
+	_mkdir(dirname);
 }
