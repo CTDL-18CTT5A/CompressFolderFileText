@@ -124,15 +124,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="BST.h" />
+    <ClInclude Include="CompressFolder.h" />
+    <ClInclude Include="FolderReader.h" />
     <ClInclude Include="HuffmanTree.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CompressFolder.cpp" />
+    <ClCompile Include="FolderReader.cpp" />
     <ClCompile Include="HuffmanTree.cpp" />
     <ClCompile Include="main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="donetest.txt" />
-    <Text Include="test.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

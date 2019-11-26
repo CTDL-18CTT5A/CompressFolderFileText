@@ -18,7 +18,7 @@ bool HuffmanTree::createCodeTree(string filename)
   // Đọc file input đầu vào
   infile.open(filename.c_str());
   if( !infile.is_open() ){
-	cout << "ERROR Loading file!\n";
+	cout << "ERROR: Loading file!\n";
 	return false;
   }
 
@@ -140,6 +140,9 @@ bool HuffmanTree::encodeFile(string originalFilename, string outputFilename)
 	string str;
 	string allText = "";
 
+	int k = originalFilename.find_last_of(".");
+	string subName = originalFilename.substr(0, k);
+
 	ifstream infile;
 	infile.open(originalFilename.c_str());
 
@@ -159,7 +162,15 @@ bool HuffmanTree::encodeFile(string originalFilename, string outputFilename)
 	infile.close();
 	
 	// Mở file output dưới dạng nhị phân
-	ofstream outStream(outputFilename.c_str(), ios::binary);
+	ofstream outStream;
+
+	if (outputFilename == "") {
+		outStream.open((subName + ".bin").c_str(), ios::binary);
+	}
+	else {
+		outStream.open((outputFilename + "/" + subName + ".bin").c_str(), ios::binary);
+	}
+	
 	
 	// Kiểm tra xem có mở hoàn tất hay không
 	if( !outStream.is_open() )
@@ -169,7 +180,7 @@ bool HuffmanTree::encodeFile(string originalFilename, string outputFilename)
 	}
 	
 	// Chuổi chứa code sau khi thay thế các phần tử của chuổi allText bằng các mã Code build được từ cây huffman
-	string currentStream="";
+	string currentStream = "";
 
 	// Kích thước mỗi lần ghi file xuống là 8 bit
 	const int WRITE_SIZE = 8;
@@ -200,9 +211,16 @@ bool HuffmanTree::encodeFile(string originalFilename, string outputFilename)
 // Decoding nhận tham số đầu vào là tên File input đã được mã hóa và tên File output sau khi giãi nén thành công
 bool HuffmanTree::decodeFile(string filename)
 {
-	// Đọc file dưới dạng nhị phân
+	// Đọc file dưới dạng nhị phân (File vào)
 	ifstream encodedfile;
 	encodedfile.open(filename.c_str(), ios::binary);
+
+	int k = filename.find_last_of(".");
+	string subName = filename.substr(0, k);
+
+	// Đọc file dưới dạng nhị phân (File ra)
+	ofstream decodedfile;
+	decodedfile.open((subName+"_de.txt").c_str(), ios::out);
 
 	// Kiểm tra xem có mở được hay không
 	if( !encodedfile.is_open() )
@@ -225,21 +243,24 @@ bool HuffmanTree::decodeFile(string filename)
 		bitset<8> set((unsigned long)readMe);
 		bitStream += set.to_string();
 	}
-	
+
 	encodedfile.close();
-	
 
 	// Duyệt qua từng kí tự của chuổi bitStream
 	int i=0;
+
 	while(i != -1)
 	{
-	  i = traverseAndPrint(bitStream, i, root);
+	  i = traverseAndPrint(decodedfile, bitStream, i, root);
 	}
+
+	decodedfile.close();
+
 	return false;
 }
 
 
-int HuffmanTree::traverseAndPrint(string &bits, int i, BSTNode *cur)
+int HuffmanTree::traverseAndPrint(ofstream& decodedfile, string &bits, int i, BSTNode *cur)
 {
   if(i >= (int)bits.length())
 	return -1;
@@ -253,13 +274,14 @@ int HuffmanTree::traverseAndPrint(string &bits, int i, BSTNode *cur)
 
 
   if(cur->left == nullptr){
-	cout << cur->data.letter;
+	  decodedfile << cur->data.letter;
+	  //cout<< cur->data.letter;
 	return i;
   }else{
 	if(bits[i] == '0')
-	  return traverseAndPrint(bits, i+1, cur->left);
+	  return traverseAndPrint(decodedfile, bits, i+1, cur->left);
 	else
-	  return traverseAndPrint(bits, i+1, cur->right);
+	  return traverseAndPrint(decodedfile, bits, i+1, cur->right);
   }
 }
 

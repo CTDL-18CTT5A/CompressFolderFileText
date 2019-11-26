@@ -34,30 +34,18 @@ public:
 	
 	bool createCodeTree(string filename);
 	
-	bool encodeFile(string originalFilename, string outputFilename);
+	bool encodeFile(string originalFilename, string outputFilename = "");
 	
 	bool decodeFile(string filename);
 	
 	void displayCode(ostream &out);
 	
 private:
-	
-	inline int traverseAndPrint(string &bits, int i)
-	{
-		return traverseAndPrint(bits, i, root);
-	}
 
 	std::vector<BST<CharFreq>::BSTNode*> freqArr;
 	BST<CharFreq>::BSTNode* root;
 	
-	int traverseAndPrint(string &bits, int i, BSTNode *cur);
-	//void printCode(ostream &out, BST<CharFreq>::BSTNode *cur);
-
-	//void makeTable(vector<BST<CharFreq>::BSTNode*> arr,
-	//	   BST<CharFreq>::BSTNode* parent);
-	 
-	//void traverseTree(std::vector<BST<CharFreq>::BSTNode*> &arr,
-	//	BST<CharFreq>::BSTNode *parent, string stringCode);	
+	int traverseAndPrint(ofstream& decodedfile, string &bits, int i, BSTNode *cur);
 	
 };
 

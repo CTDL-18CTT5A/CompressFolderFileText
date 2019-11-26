@@ -1,0 +1,6 @@
+﻿  CompressFolder.cpp
+F:\CloneHuffman\Build\Clone\Com\CompressFolderFileText\FolderCompresion\FolderCompresion\CompressFolder.cpp(10,43): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  main.cpp
+  Generating Code...
+F:\CloneHuffman\Build\Clone\Com\CompressFolderFileText\FolderCompresion\FolderCompresion\CompressFolder.cpp(25,43): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  FolderCompresion.vcxproj -> F:\CloneHuffman\Build\Clone\Com\CompressFolderFileText\FolderCompresion\x64\Debug\FolderCompresion.exe
