@@ -30,5 +30,5 @@ void FolderReader::create_folder(string folderName)
 
 	strcpy(dirname, folderName.c_str());
 
-	_mkdir(dirname);
+	int k = _mkdir(dirname);
 }

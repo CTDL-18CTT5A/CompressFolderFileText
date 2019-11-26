@@ -1,6 +1,0 @@
-﻿  HuffmanTree.cpp
-F:\CloneHuffman\Build\Clone\Com\CompressFolderFileText\FolderCompresion\FolderCompresion\HuffmanTree.cpp(143,44): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-F:\CloneHuffman\Build\Clone\Com\CompressFolderFileText\FolderCompresion\FolderCompresion\HuffmanTree.cpp(146,40): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
-F:\CloneHuffman\Build\Clone\Com\CompressFolderFileText\FolderCompresion\FolderCompresion\HuffmanTree.cpp(147,44): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-F:\CloneHuffman\Build\Clone\Com\CompressFolderFileText\FolderCompresion\FolderCompresion\HuffmanTree.cpp(227,36): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-  FolderCompresion.vcxproj -> F:\CloneHuffman\Build\Clone\Com\CompressFolderFileText\FolderCompresion\x64\Debug\FolderCompresion.exe

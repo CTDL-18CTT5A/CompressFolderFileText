@@ -15,6 +15,7 @@ int main()
 	hc.encodeFile(filename);
 	hc.decodeFile(filename_de + ".bin");*/
 
+
 	/*FolderReader fd;
 
 	string paths = "F:/CloneHuffman/Build/Clone/Com/CompressFolderFileText/FolderCompresion/FolderCompresion/data_format_txt";
@@ -37,8 +38,8 @@ int main()
 
 	CompressFolder cf;
 
-	string paths = "F:/CloneHuffman/Build/Clone/Com/CompressFolderFileText/FolderCompresion/FolderCompresion/data_format_txt";
-	cf.compressFolder(paths);
+	string paths = "F:/CloneHuffman/Build/Clone/Com/CompressFolderFileText/FolderCompresion/FolderCompresion/data_format_txt_de";
+	cf.decompressFolder(paths);
 
 
 	/*ifstream in_file("data_format_txt/sieu nhan do.txt", ios::in);
@@ -55,10 +56,6 @@ int main()
 	else {
 		cout << "ERROR: Loading fail!" << endl;
 	}*/
-
-
-
-	
 	
     return EXIT_SUCCESS;
 }
