@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef __huffman__HuffmanTree__
 #define __huffman__HuffmanTree__
 

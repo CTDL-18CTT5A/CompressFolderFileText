@@ -1,7 +1,8 @@
-#include "FolderReader.h"
+﻿#include "FolderReader.h"
 #include<direct.h>
 #include<string>
 
+// Lấy toàn bộ tên các file có trong thư mục Folder truyền vào. Phương thức trả về một vector chứa tên.
 vector<string> FolderReader::get_all_files_names_within_folder(string folder)
 {
 	vector<string> names;
@@ -24,6 +25,7 @@ vector<string> FolderReader::get_all_files_names_within_folder(string folder)
 	return names;
 }
 
+// Tạo ra một Folder
 void FolderReader::create_folder(string folderName)
 {
 	char* dirname = new char(folderName.length()+1);

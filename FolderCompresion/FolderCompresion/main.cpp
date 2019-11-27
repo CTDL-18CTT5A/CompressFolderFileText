@@ -38,8 +38,8 @@ int main()
 
 	CompressFolder cf;
 
-	string paths = "F:/CloneHuffman/Build/Clone/Com/CompressFolderFileText/FolderCompresion/FolderCompresion/data_format_txt_de";
-	cf.decompressFolder(paths);
+	string paths = "F:/CloneHuffman/Build/Clone/Com/CompressFolderFileText/FolderCompresion/FolderCompresion/data_format_txt";
+	cf.compressFolder(paths);
 
 
 	/*ifstream in_file("data_format_txt/sieu nhan do.txt", ios::in);

@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef huffman_BST_h
 #define huffman_BST_h
 
