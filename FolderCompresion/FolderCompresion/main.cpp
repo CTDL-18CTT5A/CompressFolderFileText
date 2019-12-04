@@ -16,8 +16,8 @@ int main()
 	hc.decodeFile(filename_de + ".bin");*/
 
 
-	/*FolderReader fd;
 
+	/*FolderReader fd;
 	string paths = "F:/CloneHuffman/Build/Clone/Com/CompressFolderFileText/FolderCompresion/FolderCompresion/data_format_txt";
 
 	vector <string> names = fd.get_all_files_names_within_folder(paths);
