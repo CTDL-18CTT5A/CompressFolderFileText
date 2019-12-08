@@ -1,62 +1,99 @@
-#include <iostream>
 #include"CompressFolder.h"
 
+#include <iostream>
+#include<string>
 using namespace std;
+
+void main_menu()
+{
+	int choose = 0;
+	string paths = "";
+
+	while (1) {
+		system("cls");
+
+		cout << "\n------------ M E N U ------------------\n\n";
+		cout << "1. File compress.\n";
+		cout << "2. File decompress.\n";
+		cout << "3. Folder compress.\n";
+		cout << "4. Folder decompress.\n\n";
+		cout << ">> You choose ? ";
+
+		cin >> choose;
+		cin.ignore();
+
+		switch (choose)
+		{
+		case 0: {
+			return;
+		}
+		case 1: {
+			cout << "\n>> Enter File path: ";
+			getline(cin, paths);
+			cin.ignore(0);
+
+			cout << endl;
+
+			HuffmanTree hmf;
+
+			hmf.createCodeTree(paths);
+			hmf.encodeFile(paths);
+
+			break;
+		}
+		case 2: {
+			cout << "\n>> Enter File path: ";
+			getline(cin, paths);
+			cin.ignore(0);
+			cout << endl;
+
+
+			HuffmanTree hmf;
+
+			hmf.createCodeTree(paths);
+			hmf.decodeFile(paths);
+
+			break;
+		}
+
+		case 3: {
+			cout << "\n>> Enter folder compress path: ";
+			getline(cin, paths);
+			cin.ignore(0);
+
+			CompressFolder cf;
+
+			cf.compressFolder(paths);
+
+			break;
+		}
+
+		case 4: {
+			cout << "\n>> Enter folder decompress path: ";
+			getline(cin, paths);
+			cin.ignore(0);
+
+			CompressFolder cf;
+
+			cf.decompressFolder(paths);
+
+			break;
+		}
+
+		default:
+			break;
+		}
+
+		cout << endl;
+		system("pause");
+	}
+}
+
 
 int main()
 {
-	/*HuffmanTree hc;
+	main_menu();
 
-	string filename = "few-word.txt";
-	int k = filename.find_last_of(".");
-	string filename_de = filename.substr(0, k);
-
-	hc.createCodeTree(filename);
-	hc.encodeFile(filename);
-	hc.decodeFile(filename_de + ".bin");*/
-
-
-
-	/*FolderReader fd;
-	string paths = "F:/CloneHuffman/Build/Clone/Com/CompressFolderFileText/FolderCompresion/FolderCompresion/data_format_txt";
-
-	vector <string> names = fd.get_all_files_names_within_folder(paths);
-
-	for (int i = 0; i < names.size(); i++) {
-		cout << names.at(i) << endl;
-	}*/
-
-
-	/*string paths = "F:/CloneHuffman/Build/Clone/Com/CompressFolderFileText/FolderCompresion/FolderCompresion/data_format_txt";
-	int k = paths.find_last_of("/");
-	string folderCom = paths.substr(k + 1);
-
-	FolderReader fd;
-
-	fd.create_folder(folderCom + "_de");*/
-
-
-	CompressFolder cf;
-
-	string paths = "F:/CloneHuffman/Build/Clone/Com/CompressFolderFileText/FolderCompresion/FolderCompresion/data_format_txt";
-	cf.compressFolder(paths);
-
-
-	/*ifstream in_file("data_format_txt/sieu nhan do.txt", ios::in);
-
-	string s;
-
-	if (in_file.is_open()) {
-		while (!in_file.eof())
-		{
-			in_file >> s;
-			cout << s;
-		}
-	}
-	else {
-		cout << "ERROR: Loading fail!" << endl;
-	}*/
-	
     return EXIT_SUCCESS;
 }
 

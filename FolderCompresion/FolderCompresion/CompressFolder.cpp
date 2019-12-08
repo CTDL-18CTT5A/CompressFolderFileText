@@ -9,7 +9,7 @@ void CompressFolder::compressFolder(string folder_path)
 	vector<string> allNames = fd.get_all_files_names_within_folder(folder_path);
 
 	// Tạo Folder với cấu trúc cây như Folder đầu vào
-	//fd.create_folder(folder_path + "_de");
+	//fd.create_folder(folder_path + "_en");
 
 	// Với tường tập tin trong Folder thì ta cứ việc gọi phương thức xây cây Huff sau đó mã hóa và ghi xuông file (thêm hậu tố _en vào tên tập tin)
 	for (int i = 0; i < allNames.size(); i++) {

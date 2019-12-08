@@ -16,8 +16,22 @@ bool HuffmanTree::createCodeTree(string filename)
 	vector<BST<CharFreq>::BSTNode*> arr;
 	BST<CharFreq>::BSTNode* ptr;
 	int count = 0;
+
+	int z = filename.find(".bin");
+	string subName2 = "";
+
+	if (z != -1) {
+		subName2 = filename.substr(0, z);
+	}
+
 	// Đọc file input đầu vào
-	infile.open(filename.c_str());
+
+	if (subName2 != "") {
+		infile.open((subName2 + ".txt").c_str());
+	}
+	else {
+		infile.open(filename.c_str());
+	}
 	 
 	if( !infile.is_open() ){
 		cout << "ERROR: Loading file!\n";
@@ -223,12 +237,28 @@ bool HuffmanTree::decodeFile(string filename)
 
 	int k = filename.find_last_of("/");
 	int z = filename.find_last_of(".");
-	string subName = filename.substr(0, k - 3);
-	string subName2 = filename.substr(k + 1, z - k - 1);
+
+	string subName = "";
+	string subName2 = "";
+
+	if (k != -1) {
+		subName = filename.substr(0, k - 3);
+	}
+
+	if (z != -1) {
+		subName2 = filename.substr(k + 1, z - k - 1);
+
+	}
 
 	// Đọc file dưới dạng nhị phân (File ra)
 	ofstream decodedfile;
-	decodedfile.open((subName + "_de/" + subName2 + "_de.txt").c_str(), ios::out);
+
+	if (subName != "") {
+		decodedfile.open((subName + "_de/" + subName2 + "_de.txt").c_str(), ios::out);
+	}
+	else {
+		decodedfile.open((subName2 + "_de.txt").c_str(), ios::out);
+	}
 
 	// Kiểm tra xem có mở được hay không
 	if( !encodedfile.is_open() )
